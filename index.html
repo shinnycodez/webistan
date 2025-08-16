@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webistan - Customizable E-commerce Templates</title>
+        <link rel="icon" type="image/png" href="https://scontent.flhe7-2.fna.fbcdn.net/v/t1.15752-9/532271070_2573297096344300_5636881954602047057_n.png?stp=dst-png_s480x480&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=6yxaGiYdiV8Q7kNvwEnk651&_nc_oc=AdkVXVhhInnUC0PJCyMrnV2NbBRjBvDzCYgC6FyJGaj9DUmUFerycbEYwqZnOUOYPqk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-2.fna&oh=03_Q7cD3AFCha8F8_95i5qgBpJKVwPjuiMaKpeCC4ti0d8fby01lw&oe=68C46FFF">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Typed.js CDN -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <style>
+        /* Custom colors and animations for a more branded feel */
+        :root {
+            --primary-color: #ff7f27; /* Tailwind 'orange-500' is a good match */
+            --dark-bg: #1f1f1f;
+            --card-bg: #2b2b2b;
+            --text-color: #f0f0f0;
+            --light-text: #b0b0b0;
+        }
+
+        /* Custom keyframes for a simple fade-in effect */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Custom keyframes for a fade-in-up animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply custom animation with a delay to sections */
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        /* Apply scroll-based animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ensure scroll-smooth works for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom utility classes for skill bars */
+        .skill-bar {
+            height: 8px;
+            background-color: #444;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Custom styles for the testimonial slider */
+        .testimonial-slider-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(43, 43, 43, 0.7);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .slider-button-prev {
+            left: 10px;
+        }
+
+        .slider-button-next {
+            right: 10px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: var(--light-text);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Mobile adjustments for responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero-section {
+                flex-direction: column;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            .hero-content {
+                flex-direction: column;
+            }
+            .hero-left, .hero-right {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+            }
+            .features-card {
+                margin-top: 32px;
+                width: 100%;
+            }
+            .hero-left h1 {
+                font-size: 2.5rem;
+            }
+            .features-grid {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+            .contact-form {
+                flex-direction: column;
+            }
+            .contact-form input {
+                width: 100%;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .slider-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[--dark-bg] text-[--text-color] font-sans">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center py-5 px-10 md:px-20 bg-[--dark-bg] sticky top-0 z-50 shadow-lg">
+        <div class="text-2xl font-bold">Webistan</div>
+        <nav class="hidden md:flex items-center space-x-8 nav-menu">
+            <a href="#features" class="text-sm hover:text-orange-500 transition-colors duration-300">Features</a>
+            <a href="#benefits" class="text-sm hover:text-orange-500 transition-colors duration-300">Benefits</a>
+            <a href="#stores" class="text-sm hover:text-orange-500 transition-colors duration-300">Stores</a>
+            <a href="#testimonials" class="text-sm hover:text-orange-500 transition-colors duration-300">Testimonials</a>
+            <a href="#pricing" class="text-sm hover:text-orange-500 transition-colors duration-300">Pricing</a>
+            <a href="https://www.instagram.com/webistan_/" class="bg-orange-500 text-[--dark-bg] py-2 px-4 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg">Start a Project</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-5 md:px-10">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="flex items-center justify-center min-h-screen py-20 animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl">
+                <!-- Hero Left Content -->
+                <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left mb-10 md:mb-0">
+                    <img src="https://scontent.flhe7-2.fna.fbcdn.net/v/t1.15752-9/532271070_2573297096344300_5636881954602047057_n.png?stp=dst-png_s480x480&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=6yxaGiYdiV8Q7kNvwEnk651&_nc_oc=AdkVXVhhInnUC0PJCyMrnV2NbBRjBvDzCYgC6FyJGaj9DUmUFerycbEYwqZnOUOYPqk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-2.fna&oh=03_Q7cD3AFCha8F8_95i5qgBpJKVwPjuiMaKpeCC4ti0d8fby01lw&oe=68C46FFF" alt="E-commerce Template Hero" class="w-64 h-64 rounded-full object-cover mb-8 md:mb-12 border-4 border-orange-500 transform transition-transform duration-500 hover:scale-105">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-2 leading-tight">Webistan:<br><span class="text-orange-500" id="typed-text"></span></h1>
+                    <p class="text-[--light-text] text-lg md:text-xl font-medium mb-4">The Nation of Code</p>
+                    <p class="text-[--light-text] max-w-lg mb-8">We offer a powerful pre-built e-commerce template, professionally coded with **React and Firebase**, that we customize to perfectly fit your brand's unique identity. </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+        <a href="https://www.instagram.com/webistan_/" target="_blank">
+  <button class="bg-orange-500 text-[--dark-bg] py-3 px-8 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg">
+    Start a Project
+  </button>
+</a>
+
+                        <!-- <button class="bg-transparent border border-white text-white py-3 px-8 rounded-full font-semibold hover:bg-white hover:text-orange-500 transition-all duration-300">See Our Template</button> -->
+                    </div>
+                </div>
+                
+                <!-- Hero Right Card -->
+                <div class="flex-1 flex justify-center md:justify-end animate-on-scroll" style="animation-delay: 0.5s;">
+                    <div class="bg-[--card-bg] p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-md transform transition-transform duration-500 hover:-translate-y-2">
+                        <div class="flex flex-col items-center">
+                   
+                            <h3 class="text-2xl font-bold mb-1">Pay After Delivery</h3>
+                            <p class="text-sm text-[--light-text] mb-6">Your peace of mind is our priority. We guarantee satisfaction by having you pay only after your website is complete and you're happy with the result.</p>
+                        </div>
+                        <!-- Key Benefits -->
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm mb-1">Template Customization</p>
+                                <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-1">Secure & Scalable</p>
+                                <div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div>
+                            </div>
+                            <div>
+                                <p class="text-sm mb-1">No Monthly Fees</p>
+                                <div class="skill-bar"><div class="skill-level" style="width: 100%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 animate-on-scroll">How It Works</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:bg-orange-500 group animate-on-scroll">
+                    <div class="w-16 h-16 bg-orange-500 group-hover:bg-[--dark-bg] rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-[--dark-bg] group-hover:text-orange-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold">Template Selection</h4>
+                    <p class="text-sm text-[--light-text] mt-2">Start with our expertly designed, high-performance e-commerce template.</p>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:bg-orange-500 group animate-on-scroll">
+                    <div class="w-16 h-16 bg-orange-500 group-hover:bg-[--dark-bg] rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-[--dark-bg] group-hover:text-orange-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold">Customize & Brand</h4>
+                    <p class="text-sm text-[--light-text] mt-2">We adapt the template with your branding, products, and specific features.</p>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:bg-orange-500 group animate-on-scroll">
+                    <div class="w-16 h-16 bg-orange-500 group-hover:bg-[--dark-bg] rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-[--dark-bg] group-hover:text-orange-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm-2 19H9v-1h6v1zm2-4H7V6h10v10z"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold">Launch & Pay</h4>
+                    <p class="text-sm text-[--light-text] mt-2">Once you are fully satisfied with the website, we launch it and you pay.</p>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:bg-orange-500 group animate-on-scroll">
+                    <div class="w-16 h-16 bg-orange-500 group-hover:bg-[--dark-bg] rounded-full flex items-center justify-center mx-auto mb-6 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-[--dark-bg] group-hover:text-orange-500 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15H9v-2h2v2zm1-4H9V7h4v6z"/>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold">24/7 Support</h4>
+                    <p class="text-sm text-[--light-text] mt-2">Our support team is always available to help with any questions or issues.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 text-center animate-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Transparent Pricing, Zero Risk</h2>
+            <p class="text-[--light-text] text-xl mb-12 max-w-2xl mx-auto">We're so confident in our work that you only pay once the project is complete and you're 100% satisfied. No deposits, no hidden fees.</p>
+            <div class="bg-[--card-bg] p-10 rounded-2xl shadow-xl max-w-lg mx-auto transform transition-all duration-300 hover:scale-105">
+                <h3 class="text-3xl font-bold mb-4">Customizable E-commerce Store</h3>
+                <p class="text-[--light-text] mb-6">One-time payment **after delivery**</p>
+                <div class="flex items-center justify-center mb-6">
+                    <span class="text-6xl font-bold text-orange-500">starts at Rs 4k PKR</span>
+                </div>
+                <ul class="text-left space-y-3 mb-8">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <span>Template-based design & customization</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <span>Integrated with React & Firebase</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <span>Secure hosting & payment setup</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <span>Full store management dashboard</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                        <span>No monthly fees, ever</span>
+                    </li>
+                </ul>
+                <button class="bg-orange-500 text-[--dark-bg] py-3 px-8 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 w-full shadow-lg">Buy now</button>
+            </div>
+        </section>
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-20 text-center animate-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">From DMs to a Digital Storefront</h2>
+            <p class="text-[--light-text] text-xl mb-12 max-w-2xl mx-auto">Tired of managing orders and inventory through direct messages? A professional e-commerce website changes everything.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Benefit Card 1 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-4">Professionalism & Trust</h3>
+                    <p class="text-[--light-text]">A dedicated website gives your brand credibility and makes customers feel more secure when making a purchase. No more unprofessional back-and-forth messages.</p>
+                </div>
+                <!-- Benefit Card 2 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-4">24/7 Sales & Automation</h3>
+                    <p class="text-[--light-text]">Your website is open for business 24/7. Customers can browse and purchase products anytime, while automated inventory and order management free up your time.</p>
+                </div>
+                <!-- Benefit Card 3 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-4">Simplified Order Management</h3>
+                    <p class="text-[--light-text]">Say goodbye to spreadsheets and forgotten orders. Our sites feature a backend dashboard to easily track orders, inventory, and customer data in one place.</p>
+                </div>
+                <!-- Benefit Card 4 -->
+                <div class="bg-[--card-bg] p-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <h3 class="text-2xl font-bold mb-4">Better Marketing & Analytics</h3>
+                    <p class="text-[--light-text]">With a website, you can easily run marketing campaigns and track what's working with powerful analytics. Understand your customers and grow your business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stores Section - NEW -->
+        <section id="stores" class="py-20 text-center animate-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Featured Stores</h2>
+            <p class="text-[--light-text] text-xl mb-12 max-w-2xl mx-auto">See the successful e-commerce sites we've built and customized for our clients.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Store Card 1 -->
+                <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/530859834_1174169524736089_4412592560969787255_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=WDqEJu5sQlkQ7kNvwG7YwK0&_nc_oc=AdmRZJU5KZyCS0QsHaFLf_Hv33bjvyL_Oti5n85ZLgy18tOxz2ZgQPOT34bUiOk8ufk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AH5JZZnzwetjlG6Ls1HBkmqfP6r_gxr-BSI_Z6KzNq6bw&oe=68C86307" alt="Art Palace Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">Vintage Hub</h3>
+                    <p class="text-sm text-[--light-text] mt-2">A beautiful online gallery for unique, handcrafted artworks.</p>
+                    <a href="https://www.vintage-hub.shop/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
+                <!-- Store Card 2 -->
+                <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/533403948_1943607906450723_5534845027425332908_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BAFN8LLfqbMQ7kNvwF719nd&_nc_oc=AdneiDbeRG2_oGisuLurbISDzcUxeSe_tP-V_WeW2v6zLSMMG1ZbUAMQFCTfUjNL6Ck&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AHcQXTTM424ktOiHQrKCa133rqXSPTdR1qEH_ZPsyUS9g&oe=68C851E1" alt="Urban Threads Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">Etereo.pk</h3>
+                    <p class="text-sm text-[--light-text] mt-2">The latest trends in sustainable and stylish urban fashion.</p>
+                    <a href="https://etereo-eight.vercel.app/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
+                <!-- Store Card 3 -->
+                <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://scontent.flhe3-2.fna.fbcdn.net/v/t1.15752-9/525863681_2174225896338898_7833190091343598378_n.jpg?stp=dst-jpg_s526x395_tt6&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=aQZ7z64jtzYQ7kNvwFTjYox&_nc_oc=AdlJQSUmZZK3kNUXkMGwPstlOPqIbElA4oNjLDycbXkzePe4WbL9Rx-XATHMswzazXo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe3-2.fna&oh=03_Q7cD3AFmIeJvBHaxVf7Vgl8j5qv3TIS7vlN9zbk0x0iYkYgElg&oe=68C86BD9" alt="Gourmet Goods Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">Golden Hour</h3>
+                    <p class="text-sm text-[--light-text] mt-2">High-end, delicious food products delivered right to your door.</p>
+                    <a href="https://golden-hour-eight.vercel.app/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 text-center bg-[--card-bg] relative">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 animate-on-scroll">What Our Clients Say</h2>
+            <div class="testimonial-slider-container">
+                <button id="prev-button" class="slider-button slider-button-prev p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <div id="testimonial-slider" class="testimonial-slider">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
+                        <p class="text-xl italic text-[--light-text] mb-6">"Here’s my honest review: 
+Totally love the work & website. Thankyou for being patient and cooperative all along. I’ll surely recommend webistaan to my friends too! Again thankyousm!"</p>
+                        <div class="flex items-center">
+                            <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/530859834_1174169524736089_4412592560969787255_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=WDqEJu5sQlkQ7kNvwG7YwK0&_nc_oc=AdmRZJU5KZyCS0QsHaFLf_Hv33bjvyL_Oti5n85ZLgy18tOxz2ZgQPOT34bUiOk8ufk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AH5JZZnzwetjlG6Ls1HBkmqfP6r_gxr-BSI_Z6KzNq6bw&oe=68C86307" alt="User 1" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                            <div>
+                                <h5 class="text-lg font-semibold">Vintage Hub</h5>
+                                <p class="text-sm text-[--light-text]">Small hand maded jwellery bussiness</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
+                        <p class="text-xl italic text-[--light-text] mb-6">                        <p class="text-xl italic text-[--light-text] mb-6">"I got my website done and one thing I have to say is awesome work, the website turned out so pretty I’m in love the price is so worth it!! I’ll be recommending you to my friends aswell"</p>
+"</p>
+                        <div class="flex items-center">
+                            <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/533403948_1943607906450723_5534845027425332908_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BAFN8LLfqbMQ7kNvwF719nd&_nc_oc=AdneiDbeRG2_oGisuLurbISDzcUxeSe_tP-V_WeW2v6zLSMMG1ZbUAMQFCTfUjNL6Ck&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AHcQXTTM424ktOiHQrKCa133rqXSPTdR1qEH_ZPsyUS9g&oe=68C851E1" alt="User 2" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                            <div>
+                                <h5 class="text-lg font-semibold">Eterep</h5>
+                                <p class="text-sm text-[--light-text]">Jwellery store</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="next-button" class="slider-button slider-button-next p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+            <div id="slider-dots" class="slider-dots"></div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center animate-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">Ready to Ditch the DMs?</h2>
+            <p class="text-[--light-text] mb-12">Let's build a professional, custom website that helps you grow your business. It all starts with a simple conversation.</p>
+<form class="flex flex-col md:flex-row justify-center items-center gap-4 max-w-3xl mx-auto" 
+      action="https://formspree.io/f/xrblvbrr" 
+      method="POST">
+    <input type="text" name="name" placeholder="Your Name" class="bg-[--card-bg] border border-transparent focus:border-orange-500 text-[--text-color] py-3 px-6 rounded-full w-full md:flex-1 transition-colors duration-300" required>
+    <input type="email" name="email" placeholder="Your Email" class="bg-[--card-bg] border border-transparent focus:border-orange-500 text-[--text-color] py-3 px-6 rounded-full w-full md:flex-1 transition-colors duration-300" required>
+    <button type="submit" class="bg-orange-500 text-[--dark-bg] py-3 px-8 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 w-full md:w-auto shadow-lg">Start a Project Today</button>
+</form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[--dark-bg] py-10 text-center border-t border-[--card-bg]">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-5 md:px-10">
+            <div class="text-2xl font-bold mb-4 md:mb-0">Webistan</div>
+            <div class="flex items-center space-x-6 mb-4 md:mb-0">
+                <a href="#" class="text-[--light-text] hover:text-orange-500 transition-colors duration-300">Facebook</a>
+                <a href="#" class="text-[--light-text] hover:text-orange-500 transition-colors duration-300">Twitter</a>
+                <a href="#" class="text-[--light-text] hover:text-orange-500 transition-colors duration-300">LinkedIn</a>
+                <a href="#" class="text-[--light-text] hover:text-orange-500 transition-colors duration-300">Instagram</a>
+            </div>
+        </div>
+        <p class="text-xs text-[--light-text] mt-8">&copy; 2024 Webistan. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Typed.js initialization
+        window.onload = function() {
+            var typed = new Typed('#typed-text', {
+                strings: ['Template-Based Websites','Trusted by 10+ stores', 'Customized For You', 'Pay After Delivery'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true,
+            });
+
+            // Intersection Observer for scroll-based animations
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1,
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Testimonial slider functionality
+            const slider = document.getElementById('testimonial-slider');
+            const slides = document.querySelectorAll('.testimonial-card');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const dotsContainer = document.getElementById('slider-dots');
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            // Create navigation dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('slider-dot');
+                dot.addEventListener('click', () => {
+                    currentSlide = i;
+                    updateSlider();
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = document.querySelectorAll('.slider-dot');
+
+            const updateSlider = () => {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            };
+
+            prevButton.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+
+            // Initialize the slider on page load
+            updateSlider();
+        };
+    </script>
+
+</body>
+</html>
