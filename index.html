@@ -58,6 +58,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
 
         /* Ensure scroll-smooth works for anchor links */
         html {
@@ -92,7 +93,11 @@
             border-radius: 4px;
             overflow: hidden;
         }
-
+.testimonial-card p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
         .skill-level {
             height: 100%;
             background-color: var(--primary-color);
@@ -415,43 +420,43 @@
         </section>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-20 text-center bg-[--card-bg] relative">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 animate-on-scroll">What Our Clients Say</h2>
-            <div class="testimonial-slider-container">
-                <button id="prev-button" class="slider-button slider-button-prev p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <div id="testimonial-slider" class="testimonial-slider">
-                    <!-- Testimonial Card 1 -->
-                    <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
-                        <p class="text-xl italic text-[--light-text] mb-6">"Here's my honest review: 
+<section id="testimonials" class="py-20 text-center bg-[--card-bg] relative">
+    <h2 class="text-4xl md:text-5xl font-bold mb-12 animate-on-scroll">What Our Clients Say</h2>
+    <div class="testimonial-slider-container">
+        <button id="prev-button" class="slider-button slider-button-prev p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <div id="testimonial-slider" class="testimonial-slider">
+            <!-- Testimonial Card 1 -->
+            <div class="testimonial-card w-full max-w-4xl mx-auto p-8 rounded-2xl shadow-lg text-left flex-1 animate-on-scroll">
+                <p class="text-xl italic text-[--light-text] mb-6 mx-auto" style="max-width: 80ch;">"Here's my honest review: 
 Totally love the work & website. Thankyou for being patient and cooperative all along. I'll surely recommend webistaan to my friends too! Again thankyousm!"</p>
-                        <div class="flex items-center">
-                            <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/530859834_1174169524736089_4412592560969787255_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=WDqEJu5sQlkQ7kNvwG7YwK0&_nc_oc=AdmRZJU5KZyCS0QsHaFLf_Hv33bjvyL_Oti5n85ZLgy18tOxz2ZgQPOT34bUiOk8ufk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AH5JZZnzwetjlG6Ls1HBkmqfP6r_gxr-BSI_Z6KzNq6bw&oe=68C86307" alt="User 1" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
-                            <div>
-                                <h5 class="text-lg font-semibold">Vintage Hub</h5>
-                                <p class="text-sm text-[--light-text]">Small hand maded jwellery bussiness</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial Card 2 -->
-                    <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
-                        <p class="text-xl italic text-[--light-text] mb-6">"I got my website done and one thing I have to say is awesome work, the website turned out so pretty I'm in love the price is so worth it!! I'll be recommending you to my friends aswell"</p>
-                        <div class="flex items-center">
-                            <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/533403948_1943607906450723_5534845027425332908_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BAFN8LLfqbMQ7kNvwF719nd&_nc_oc=AdneiDbeRG2_oGisuLurbISDzcUxeSe_tP-V_WeW2v6zLSMMG1ZbUAMQFCTfUjNL6Ck&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AHcQXTTM424ktOiHQrKCa133rqXSPTdR1qEH_ZPsyUS9g&oe=68C851E1" alt="User 2" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
-                            <div>
-                                <h5 class="text-lg font-semibold">Etereo</h5>
-                                <p class="text-sm text-[--light-text]">Jwellery store</p>
-                            </div>
-                        </div>
+                <div class="flex items-center justify-center md:justify-start">
+                    <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/530859834_1174169524736089_4412592560969787255_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=WDqEJu5sQlkQ7kNvwG7YwK0&_nc_oc=AdmRZJU5KZyCS0QsHaFLf_Hv33bjvyL_Oti5n85ZLgy18tOxz2ZgQPOT34bUiOk8ufk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AH5JZZnzwetjlG6Ls1HBkmqfP6r_gxr-BSI_Z6KzNq6bw&oe=68C86307" alt="User 1" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                    <div>
+                        <h5 class="text-lg font-semibold">Vintage Hub</h5>
+                        <p class="text-sm text-[--light-text]">Small hand maded jwellery bussiness</p>
                     </div>
                 </div>
-                <button id="next-button" class="slider-button slider-button-next p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
             </div>
-            <div id="slider-dots" class="slider-dots"></div>
-        </section>
+            <!-- Testimonial Card 2 -->
+            <div class="testimonial-card w-full max-w-4xl mx-auto p-8 rounded-2xl shadow-lg text-left flex-1 animate-on-scroll">
+                <p class="text-xl italic text-[--light-text] mb-6 mx-auto" style="max-width: 80ch;">"I got my website done and one thing I have to say is awesome work, the website turned out so pretty I'm in love the price is so worth it!! I'll be recommending you to my friends aswell"</p>
+                <div class="flex items-center justify-center md:justify-start">
+                    <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/533403948_1943607906450723_5534845027425332908_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BAFN8LLfqbMQ7kNvwF719nd&_nc_oc=AdneiDbeRG2_oGisuLurbISDzcUxeSe_tP-V_WeW2v6zLSMMG1ZbUAMQFCTfUjNL6Ck&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AHcQXTTM424ktOiHQrKCa133rqXSPTdR1qEH_ZPsyUS9g&oe=68C851E1" alt="User 2" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                    <div>
+                        <h5 class="text-lg font-semibold">Etereo</h5>
+                        <p class="text-sm text-[--light-text]">Jwellery store</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="next-button" class="slider-button slider-button-next p-2 rounded-full hover:bg-orange-500 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+    <div id="slider-dots" class="slider-dots"></div>
+</section>
 
 
         <!-- Contact Section -->
@@ -488,8 +493,8 @@ Totally love the work & website. Thankyou for being patient and cooperative all 
         window.onload = function() {
             var typed = new Typed('#typed-text', {
                 strings: ['Template-Based Websites','Trusted by 10+ stores', 'Customized For You', 'Pay After Delivery'],
-                typeSpeed: 50,
-                backSpeed: 30,
+                typeSpeed: 70,
+                backSpeed: 50,
                 loop: true,
             });
 
