@@ -64,6 +64,27 @@
             scroll-behavior: smooth;
         }
 
+        /* Fix for typed.js animation jumping - set fixed height for typed text container */
+        .typed-text-container {
+            min-height: 2.5em; /* Adjust based on your font size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (min-width: 768px) {
+            .typed-text-container {
+                min-height: 3em; /* Larger height for desktop */
+                justify-content: flex-start;
+            }
+        }
+
+        /* Ensure typed text doesn't cause layout shift */
+        #typed-text {
+            display: inline-block;
+            min-width: 1ch; /* Prevents complete collapse when empty */
+        }
+
         /* Custom utility classes for skill bars */
         .skill-bar {
             height: 8px;
@@ -207,7 +228,12 @@
                 <!-- Hero Left Content -->
                 <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left mb-10 md:mb-0">
                     <img src="https://scontent.flhe7-2.fna.fbcdn.net/v/t1.15752-9/532271070_2573297096344300_5636881954602047057_n.png?stp=dst-png_s480x480&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=6yxaGiYdiV8Q7kNvwEnk651&_nc_oc=AdkVXVhhInnUC0PJCyMrnV2NbBRjBvDzCYgC6FyJGaj9DUmUFerycbEYwqZnOUOYPqk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-2.fna&oh=03_Q7cD3AFCha8F8_95i5qgBpJKVwPjuiMaKpeCC4ti0d8fby01lw&oe=68C46FFF" alt="E-commerce Template Hero" class="w-64 h-64 rounded-full object-cover mb-8 md:mb-12 border-4 border-orange-500 transform transition-transform duration-500 hover:scale-105">
-                    <h1 class="text-5xl md:text-6xl font-bold mb-2 leading-tight">Webistan:<br><span class="text-orange-500" id="typed-text"></span></h1>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-2 leading-tight">
+                        Webistan:<br>
+                        <span class="typed-text-container text-orange-500">
+                            <span id="typed-text"></span>
+                        </span>
+                    </h1>
                     <p class="text-[--light-text] text-lg md:text-xl font-medium mb-4">The Nation of Code</p>
                     <p class="text-[--light-text] max-w-lg mb-8">We offer a powerful pre-built e-commerce template, professionally coded with **React and Firebase**, that we customize to perfectly fit your brand's unique identity. </p>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -398,8 +424,8 @@
                 <div id="testimonial-slider" class="testimonial-slider">
                     <!-- Testimonial Card 1 -->
                     <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
-                        <p class="text-xl italic text-[--light-text] mb-6">"Here’s my honest review: 
-Totally love the work & website. Thankyou for being patient and cooperative all along. I’ll surely recommend webistaan to my friends too! Again thankyousm!"</p>
+                        <p class="text-xl italic text-[--light-text] mb-6">"Here's my honest review: 
+Totally love the work & website. Thankyou for being patient and cooperative all along. I'll surely recommend webistaan to my friends too! Again thankyousm!"</p>
                         <div class="flex items-center">
                             <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/530859834_1174169524736089_4412592560969787255_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=WDqEJu5sQlkQ7kNvwG7YwK0&_nc_oc=AdmRZJU5KZyCS0QsHaFLf_Hv33bjvyL_Oti5n85ZLgy18tOxz2ZgQPOT34bUiOk8ufk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AH5JZZnzwetjlG6Ls1HBkmqfP6r_gxr-BSI_Z6KzNq6bw&oe=68C86307" alt="User 1" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
                             <div>
@@ -410,12 +436,11 @@ Totally love the work & website. Thankyou for being patient and cooperative all 
                     </div>
                     <!-- Testimonial Card 2 -->
                     <div class="testimonial-card p-8 rounded-2xl shadow-lg max-w-xl text-left flex-1 animate-on-scroll">
-                        <p class="text-xl italic text-[--light-text] mb-6">                        <p class="text-xl italic text-[--light-text] mb-6">"I got my website done and one thing I have to say is awesome work, the website turned out so pretty I’m in love the price is so worth it!! I’ll be recommending you to my friends aswell"</p>
-"</p>
+                        <p class="text-xl italic text-[--light-text] mb-6">"I got my website done and one thing I have to say is awesome work, the website turned out so pretty I'm in love the price is so worth it!! I'll be recommending you to my friends aswell"</p>
                         <div class="flex items-center">
                             <img src="https://scontent.flhe7-1.fna.fbcdn.net/v/t1.15752-9/533403948_1943607906450723_5534845027425332908_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=BAFN8LLfqbMQ7kNvwF719nd&_nc_oc=AdneiDbeRG2_oGisuLurbISDzcUxeSe_tP-V_WeW2v6zLSMMG1ZbUAMQFCTfUjNL6Ck&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.flhe7-1.fna&oh=03_Q7cD3AHcQXTTM424ktOiHQrKCa133rqXSPTdR1qEH_ZPsyUS9g&oe=68C851E1" alt="User 2" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
                             <div>
-                                <h5 class="text-lg font-semibold">Eterep</h5>
+                                <h5 class="text-lg font-semibold">Etereo</h5>
                                 <p class="text-sm text-[--light-text]">Jwellery store</p>
                             </div>
                         </div>
