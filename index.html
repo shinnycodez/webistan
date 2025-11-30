@@ -224,23 +224,78 @@
                 display: none;
             }
         }
+        #mobile-menu {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Smooth transitions for mobile menu */
+#mobile-menu {
+    transition: transform 0.3s ease-in-out;
+}
     </style>
 </head>
 <body class="bg-[--dark-bg] text-[--text-color] font-sans">
     
     <!-- Header -->
-    <header class="flex justify-between items-center py-5 px-10 md:px-20 bg-[--dark-bg] sticky top-0 z-50 shadow-lg">
-        <div class="text-2xl font-bold">Webistan</div>
-        <nav class="hidden md:flex items-center space-x-8 nav-menu">
-            <a href="#features" class="text-sm hover:text-orange-500 transition-colors duration-300">Features</a>
-            <a href="#benefits" class="text-sm hover:text-orange-500 transition-colors duration-300">Benefits</a>
-            <a href="#stores" class="text-sm hover:text-orange-500 transition-colors duration-300">Stores</a>
-            <a href="#testimonials" class="text-sm hover:text-orange-500 transition-colors duration-300">Testimonials</a>
-            <a href="#pricing" class="text-sm hover:text-orange-500 transition-colors duration-300">Pricing</a>
-            <a href="https://www.instagram.com/webistan_/" class="bg-orange-500 text-[--dark-bg] py-2 px-4 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg">Start a Project</a>
+<!-- Header -->
+<header class="flex justify-between items-center py-5 px-10 md:px-20 bg-[--dark-bg] sticky top-0 z-50 shadow-lg">
+    <div class="text-2xl font-bold">Webistan</div>
+    
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-8 nav-menu">
+        <a href="#features" class="text-sm hover:text-orange-500 transition-colors duration-300">Features</a>
+        <a href="#benefits" class="text-sm hover:text-orange-500 transition-colors duration-300">Benefits</a>
+        <a href="#stores" class="text-sm hover:text-orange-500 transition-colors duration-300">Stores</a>
+        <a href="#testimonials" class="text-sm hover:text-orange-500 transition-colors duration-300">Testimonials</a>
+        <a href="#pricing" class="text-sm hover:text-orange-500 transition-colors duration-300">Pricing</a>
+        <a href="#video-testimonials" class="text-sm hover:text-orange-500 transition-colors duration-300">Video Reviews</a>
+        <a href="https://www.instagram.com/webistan_/" class="bg-orange-500 text-[--dark-bg] py-2 px-4 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg">Start a Project</a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
+        <button id="mobile-menu-button" class="p-2 rounded-md text-white hover:bg-orange-500 transition-colors duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+<div id="mobile-menu" class="fixed inset-0 bg-[--dark-bg] z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+    <div class="flex flex-col h-full">
+        <!-- Close Button -->
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="p-2 rounded-md text-white hover:bg-orange-500 transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Navigation Links -->
+        <nav class="flex-1 flex flex-col items-center justify-center space-y-8 px-6">
+            <a href="#features" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Features</a>
+            <a href="#benefits" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Benefits</a>
+            <a href="#stores" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Stores</a>
+            <a href="#testimonials" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Testimonials</a>
+            <a href="#pricing" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Pricing</a>
+            <a href="#video-testimonials" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Video Reviews</a>
+            <a href="#contact" class="text-2xl font-semibold text-white hover:text-orange-500 transition-colors duration-300 py-2">Contact</a>
+            
+            <!-- CTA Button -->
+            <a href="https://www.instagram.com/webistan_/" 
+               class="bg-orange-500 text-[--dark-bg] text-xl font-semibold py-4 px-8 rounded-full hover:bg-orange-400 transition-all duration-300 shadow-lg mt-8">
+                Start a Project
+            </a>
         </nav>
-    </header>
-
+        
+        <!-- Footer in Mobile Menu -->
+        <div class="p-6 text-center border-t border-[--card-bg]">
+            <p class="text-sm text-[--light-text]">&copy; 2024 Webistan. All rights reserved.</p>
+        </div>
+    </div>
+</div>
     <main class="container mx-auto px-5 md:px-10">
         
         <!-- Hero Section -->
@@ -450,6 +505,24 @@
                     <p class="text-sm text-[--light-text] mt-2">Jewellery store</p>
                     <a href="https://izzajewelryshop.vercel.app/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
                 </div>
+                     <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://pbs.twimg.com/media/G7AjM-IbQAAU5Sd?format=jpg&name=small" alt="Gourmet Goods Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">Rose Bloom</h3>
+                    <p class="text-sm text-[--light-text] mt-2">Jewellery store</p>
+                    <a href="https://rose-bloom.vercel.app/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
+                    <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://pbs.twimg.com/media/G7Ak4KbbYAErWY0?format=jpg&name=small" alt="Gourmet Goods Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">BY HIBA</h3>
+                    <p class="text-sm text-[--light-text] mt-2">Jewellery store</p>
+                    <a href="https://www.byhiba.store/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
+                     <div class="bg-[--card-bg] p-6 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-105 animate-on-scroll">
+                    <img src="https://pbs.twimg.com/media/G7Ama2hbYAAYV7l?format=jpg&name=small" alt="Gourmet Goods Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-orange-500">
+                    <h3 class="text-2xl font-bold">Jemzi</h3>
+                    <p class="text-sm text-[--light-text] mt-2">Jewellery store</p>
+                    <a href="https://jemzi.vercel.app/" class="inline-block mt-4 bg-orange-500 text-[--dark-bg] py-2 px-6 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 shadow-lg" target="_blank">Visit Store</a>
+                </div>
             </div>
         </section>
 
@@ -543,6 +616,36 @@
                     </div>
                 </div>
             </div>
+             <div class="testimonial-card w-full flex-shrink-0 px-4">
+                <div class="bg-white/5 p-6 md:p-8 rounded-2xl shadow-lg text-left max-w-4xl mx-auto">
+                    <p class="text-lg md:text-xl italic text-[--light-text] mb-6">
+                     Mentioning us on their story they wrote "A huge shotout to webistan, he made the website as i wanted to be, he is such a cooperative person.
+                    <div class="flex items-center justify-center md:justify-start">
+                        <img src= "https://pbs.twimg.com/media/G7AjM-IbQAAU5Sd?format=jpg&name=small" 
+                             alt="User 2" 
+                             class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                        <div>
+                            <h5 class="text-base md:text-lg font-semibold">Rose Bloom</h5>
+                            <p class="text-sm text-[--light-text]">Jewellery store</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                         <div class="testimonial-card w-full flex-shrink-0 px-4">
+                <div class="bg-white/5 p-6 md:p-8 rounded-2xl shadow-lg text-left max-w-4xl mx-auto">
+                    <p class="text-lg md:text-xl italic text-[--light-text] mb-6">
+                  I honestly couldn’t believe how quickly and professionally you built my website and  had it done in just a few hours, and it looked exactly how I imagined. What really impressed me was how patient and understanding you were— even when I kept asking for little tweaks. and I’d absolutely recommend you to o anyone.
+                    <div class="flex items-center justify-center md:justify-start">
+                        <img src= "https://pbs.twimg.com/media/G7Ak4KbbYAErWY0?format=jpg&name=small" 
+                             alt="User 2" 
+                             class="w-14 h-14 md:w-16 md:h-16 rounded-full object-cover mr-4 border-2 border-orange-500">
+                        <div>
+                            <h5 class="text-base md:text-lg font-semibold">BY HIBA</h5>
+                            <p class="text-sm text-[--light-text]">Jewellery store</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Navigation Buttons -->
@@ -591,7 +694,7 @@
     playsinline 
     controls 
     class="w-full h-full object-cover rounded-xl shadow-lg"
-    poster="https://example.com/video-thumbnail.jpg"
+poster="https://pbs.twimg.com/media/G681xhxbIAAHRdv?format=jpg&name=small"
                                     class="w-full h-full object-cover rounded-xl shadow-lg"
                                     poster="https://pbs.twimg.com/media/G681xhxbIAAHRdv?format=jpg&name=small"
                                 >
@@ -609,7 +712,7 @@
                                     <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/>
                                 </svg>
                                 <p class="text-lg md:text-xl italic text-[--light-text] mb-4">
-                                    "Here's my honest review: Totally love the work & website. Thank you for being patient and cooperative all along. I'll surely recommend Webistan to my friends too!"
+                                  i've made my website by webistan and my experience was so good with them, they designed everything acorrding to me, the look, the color was so cute literally as i wanted
                                 </p>
                                 <div class="flex items-center mt-6">
                                     <div class="w-3 h-0.5 bg-orange-500 mr-2"></div>
@@ -666,7 +769,7 @@
       action="https://formspree.io/f/xrblvbrr" 
       method="POST">
     <input type="text" name="name" placeholder="Your Name" class="bg-[--card-bg] border border-transparent focus:border-orange-500 text-[--text-color] py-3 px-6 rounded-full w-full md:flex-1 transition-colors duration-300" required>
-    <input type="email" name="email" placeholder="Your Email" class="bg-[--card-bg] border border-transparent focus:border-orange-500 text-[--text-color] py-3 px-6 rounded-full w-full md:flex-1 transition-colors duration-300" required>
+    <input type="text" name="instagram" placeholder="Your instagram" class="bg-[--card-bg] border border-transparent focus:border-orange-500 text-[--text-color] py-3 px-6 rounded-full w-full md:flex-1 transition-colors duration-300" required>
     <button type="submit" class="bg-orange-500 text-[--dark-bg] py-3 px-8 rounded-full font-semibold hover:bg-orange-400 transition-all duration-300 w-full md:w-auto shadow-lg">Start a Project Today</button>
 </form>
         </section>
@@ -825,6 +928,41 @@ function initVideoAutoplay() {
 
 // Initialize when page loads
 window.addEventListener('load', initVideoAutoplay);
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Open mobile menu
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.remove('-translate-x-full');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+    
+    // Close mobile menu
+    closeMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.add('-translate-x-full');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+    
+    // Close menu when clicking on links
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    });
+    
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    });
+});
     </script>
 
 </body>
